@@ -14,7 +14,7 @@ class DesktopMainPage extends StatefulWidget{
 class _StateDesktopMainPage extends State<DesktopMainPage>{
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -85,7 +85,7 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
           ]
           else...[
             DesktopHomePage(
-              size: _size,
+              size: size,
               refresh: () => setState(() {
                 currentPageIndex = 1;
               }),

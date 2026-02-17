@@ -5,7 +5,7 @@ import 'package:parmigiano_menu/Utils/hoverableText.dart';
 
 class DesktopHomePage extends StatefulWidget {
   const DesktopHomePage({super.key, required this.size, required this.refresh});
-  final size;
+  final Size size;
   final VoidCallback refresh;
 
   @override
@@ -15,48 +15,87 @@ class DesktopHomePage extends StatefulWidget {
 class _DesktopHomePageState extends State<DesktopHomePage> {
   @override
   Widget build(BuildContext context) {
+    double interval = widget.size.width * 0.30;
+    double width = widget.size.width, height = widget.size.height;
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: widget.size.height - appBarHeight, maxWidth: widget.size.width),
+        constraints: BoxConstraints(maxHeight: height - appBarHeight, maxWidth: width),
         child: Center(
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 100,),
-                Text(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: height * 0.1,),
+              TweenAnimationBuilder(
+                duration: const Duration(milliseconds: 300),
+                tween: Tween<double>(begin: 0, end: interval),
+                builder: (context, value, child) {
+                  // debugPrint((interval - value).toString());
+                  return Opacity(
+                    opacity: value / interval,
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.only(right: interval - value),
+                      child: child,
+                    ),
+                  );
+                },
+                child: Text(
                   mainPageTitleText,
                   style: GoogleFonts.playfairDisplay(
-                      fontSize: 65,
+                      fontSize: width * 0.04,
                       fontWeight: FontWeight.w700,
                       color: parmigianoGoldColor
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 25,),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: widget.size.width * 0.2),
+              ),
+              SizedBox(height: height * 0.025,),
+              TweenAnimationBuilder(
+                duration: const Duration(milliseconds: 300),
+                tween: Tween<double>(begin: 0, end: interval),
+                builder: (context, value, child) {
+                  // debugPrint((interval - value).toString());
+                  return Opacity(
+                    opacity: value / interval,
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.only(left: (interval - value)/2),
+                      child: child,
+                    ),
+                  );
+                },
+                child: SizedBox(
+                  width: width * 0.6,
                   child: Text(
-                      mainPageInfoText,
-                      style: GoogleFonts.lato(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFFDCD8D0)
-                      ),
-                      textAlign: TextAlign.center
+                    mainPageInfoText,
+                    style: GoogleFonts.lato(
+                      fontSize: width * 0.02,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xFFDCD8D0)
+                    ),
+                    textAlign: TextAlign.center
                   ),
                 ),
-                SizedBox(height: widget.size.height * 0.15,),
-                ElevatedButton(
+              ),
+              SizedBox(height: height * 0.1,),
+              TweenAnimationBuilder(
+                duration: const Duration(milliseconds: 300),
+                tween: Tween<double>(begin: 0, end: interval),
+                builder: (context, value, child) {
+                  // debugPrint((interval - value).toString());
+                  return Opacity(
+                    opacity: value / interval,
+                    child: child,
+                  );
+                },
+                child: ElevatedButton(
                   onPressed: widget.refresh,
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(parmigianoGoldColor),
                   ),
                   child: SizedBox(
-                    width: widget.size.width * 0.25,
-                    height: widget.size.height * 0.1,
+                    width: width * 0.25,
+                    height: height * 0.1,
                     child: Center(
                       child: HoverableText(
                         text: "See Menu",
@@ -66,9 +105,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                       )
                     ),
                   )
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

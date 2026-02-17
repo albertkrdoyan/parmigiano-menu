@@ -15,60 +15,96 @@ class MobileHomePage extends StatefulWidget {
 class _MobileHomePageState extends State<MobileHomePage> {
   @override
   Widget build(BuildContext context) {
+    double interval = widget.size.height * 0.05;
+    double width = widget.size.width, height = widget.size.height;
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: widget.size.height - appBarHeight, maxWidth: widget.size.width),
+        constraints: BoxConstraints(maxHeight: height, maxWidth: width),
         child: Center(
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 45,),
-                Text(
-                  mainPageTitleText,
-                  style: GoogleFonts.playfairDisplay(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w700,
-                      color: parmigianoGoldColor
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: height * 0.05,),
+              TweenAnimationBuilder(
+                tween: Tween(begin: 0, end: interval),
+                duration: const Duration(milliseconds: 500),
+                builder: (context, value, child) {
+                  return Padding(
+                    padding: EdgeInsetsGeometry.only(top: interval - value),
+                    child: Opacity(
+                      opacity: value / interval,
+                      child: child,
+                    ),
+                  );
+                },
+                child: SizedBox(
+                  width: width * 0.9,
+                  child: Text(
+                    mainPageTitleText,
+                    style: GoogleFonts.playfairDisplay(
+                        fontSize: width * 0.095,
+                        fontWeight: FontWeight.w700,
+                        color: parmigianoGoldColor
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 15,),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: widget.size.width * 0.2),
+              ),
+              SizedBox(height: height * 0.035,),
+              TweenAnimationBuilder(
+                tween: Tween(begin: 0, end: interval),
+                duration: const Duration(milliseconds: 500),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value / interval,
+                    child: child,
+                  );
+                },
+                child: SizedBox(
+                  width: width * 0.6,
                   child: Text(
                       mainPageInfoText,
                       style: GoogleFonts.lato(
-                          fontSize: 18,
+                          fontSize: width * 0.045,
                           fontWeight: FontWeight.w400,
                           color: Color(0xFFDCD8D0)
                       ),
                       textAlign: TextAlign.center
                   ),
                 ),
-                SizedBox(height: widget.size.height * 0.1,),
-                ElevatedButton(
+              ),
+              SizedBox(height: height * 0.095,),
+              TweenAnimationBuilder(
+                tween: Tween(begin: 0, end: interval),
+                duration: const Duration(milliseconds: 500),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value / interval,
+                    child: child,
+                  );
+                },
+                child: ElevatedButton(
                   onPressed: widget.refresh,
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(parmigianoGoldColor),
                   ),
                   child: SizedBox(
-                    width: widget.size.width * 0.85,
-                    height: widget.size.height * 0.1,
+                    width: width * 0.85,
+                    height: height * 0.1,
                     child: Center(
                       child: HoverableText(
-                        text: "See Menu.",
+                        text: "See Menu",
                         isActive: true,
-                        size: 32,
+                        size: width * 0.0975,
                         noAnimation: true,
                       )
                     ),
                   )
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

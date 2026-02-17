@@ -20,6 +20,12 @@ class _MobileMainPageState extends State<MobileMainPage> {
       appBar: AppBar(
         toolbarHeight: appBarHeight * size.width / 450,
         backgroundColor: Colors.black,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu_rounded, color: parmigianoGoldColor, size: appBarHeight * 0.375,),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
@@ -41,7 +47,7 @@ class _MobileMainPageState extends State<MobileMainPage> {
                 style: TextStyle(
                   fontSize: size.width * 0.075,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                  color: parmigianoGoldColor,
                 ),
               ),
             ),
@@ -49,6 +55,7 @@ class _MobileMainPageState extends State<MobileMainPage> {
         ),
       ),
       drawer: Drawer(
+
         width: size.width * 0.8,
         backgroundColor: Colors.black,
         child: SingleChildScrollView(

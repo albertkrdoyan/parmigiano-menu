@@ -10,6 +10,8 @@ class MobileMenuPage extends StatefulWidget {
 class _MobileMenuPageState extends State<MobileMenuPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Center(
+      child: Text("Menu Page"),
+    );
   }
 }
