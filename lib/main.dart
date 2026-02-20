@@ -12,7 +12,8 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    appBarHeight = MediaQuery.of(context).size.height * 0.15;
+    double h = MediaQuery.of(context).size.height * 0.15;
+    appBarHeight = (h > 100 ? 100 : h < 75 ? 75 : MediaQuery.of(context).size.height * 0.15);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
