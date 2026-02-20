@@ -55,7 +55,6 @@ class _MobileMainPageState extends State<MobileMainPage> {
         ),
       ),
       drawer: Drawer(
-
         width: size.width * 0.8,
         backgroundColor: Colors.black,
         child: SingleChildScrollView(
@@ -92,6 +91,8 @@ class _MobileMainPageState extends State<MobileMainPage> {
                     isActive: i == currentPageIndex,
                     size: 45,
                     noAnimation: false,
+                    activeColor: Colors.transparent,
+                    hasUnderline: false,
                   ),
                 ),
                 SizedBox(height: 45),

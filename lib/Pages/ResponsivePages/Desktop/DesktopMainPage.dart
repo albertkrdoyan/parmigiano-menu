@@ -55,6 +55,8 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                     isActive: i == currentPageIndex,
                     size: 25,
                     noAnimation: false,
+                    activeColor: Colors.transparent,
+                    hasUnderline: false,
                   ),
                 ),
                 SizedBox(width: 45),

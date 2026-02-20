@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:parmigiano_menu/Utils/constants.dart';
 import 'Pages/MenuPage.dart';
 
 void main() {
@@ -11,6 +12,7 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    appBarHeight = MediaQuery.of(context).size.height * 0.15;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       scrollBehavior: const MaterialScrollBehavior().copyWith(

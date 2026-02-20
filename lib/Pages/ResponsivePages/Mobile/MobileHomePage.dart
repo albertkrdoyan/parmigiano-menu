@@ -99,6 +99,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
                         isActive: true,
                         size: width * 0.0975,
                         noAnimation: true,
+                        activeColor: Colors.transparent,
+                        hasUnderline: false,
                       )
                     ),
                   )

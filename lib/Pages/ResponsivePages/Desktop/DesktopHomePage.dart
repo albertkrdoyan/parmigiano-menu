@@ -102,6 +102,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                         isActive: true,
                         size: 32,
                         noAnimation: true,
+                        activeColor: Colors.transparent,
+                        hasUnderline: false,
                       )
                     ),
                   )
