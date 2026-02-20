@@ -46,7 +46,7 @@ class HoverableTextState extends State<HoverableText>{
             AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               height: 3,
-              width: widget.isActive && widget.hasUnderline ? widget.text.length.toDouble()*15 : 0,
+              width: widget.isActive && widget.hasUnderline ? widget.text.length.toDouble() * 15 * widget.size / 25 : 0,
               color: parmigianoGoldColor,
             )
           ],

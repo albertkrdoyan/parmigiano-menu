@@ -17,7 +17,7 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
     String sub = subMenu[currentSubMenuIndex];
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final int crossAxisCount = width > 1200 ? 3 : width > 800 ? 2 : 1;
+    final int crossAxisCount = width > 1200 ? 3 : width > 700 ? 2 : 1;
     double interval = 15;
 
     return SizedBox(
@@ -106,6 +106,7 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                 ),
                 // itemBuilder: (context, index) => Text('$sub \n$url/$sub/${menu[sub]![index][0]}${menu[sub]![index][4]}',style: TextStyle(color: Colors.white),),
                 itemBuilder: (context, index) => MenuItemCard(
+                  isMobile: false,
                   url: url,
                   subMenu: sub,
                   index: index,

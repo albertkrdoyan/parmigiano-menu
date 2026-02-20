@@ -17,43 +17,6 @@ class _MobileMainPageState extends State<MobileMainPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: appBarHeight * size.width / 450,
-        backgroundColor: Colors.black,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu_rounded, color: parmigianoGoldColor, size: appBarHeight * 0.375,),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: Container(
-                height: appBarHeight,
-                padding: EdgeInsetsGeometry.symmetric(vertical: 8),
-                child: Image.asset(
-                  'lib/Images/Logos/logo.png',
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            SizedBox(width: 5,),
-            Expanded(
-              child: Text(
-                "Restaurant\n      & Cafe",
-                style: TextStyle(
-                  fontSize: size.width * 0.075,
-                  fontWeight: FontWeight.w600,
-                  color: parmigianoGoldColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       drawer: Drawer(
         width: size.width * 0.8,
         backgroundColor: Colors.black,
@@ -101,39 +64,85 @@ class _MobileMainPageState extends State<MobileMainPage> {
           ),
         ),
       ),
-      body: Container(
-        color: Colors.black,
-        child: Stack(
-          children: [
-            // bg image
-            Positioned.fill(
-              child: Image.asset(
-                'lib/Images/BGImages/MobileScreenBG.webp',
-                fit: BoxFit.fitHeight,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            pinned: false,
+            toolbarHeight: appBarHeight * size.width / 450,
+            backgroundColor: Colors.black,
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: Icon(Icons.menu_rounded, color: parmigianoGoldColor, size: appBarHeight * 0.375,),
+                onPressed: () => Scaffold.of(context).openDrawer(),
               ),
             ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: appBarHeight,
+                    padding: EdgeInsetsGeometry.symmetric(vertical: 8),
+                    child: Image.asset(
+                      'lib/Images/Logos/logo.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 5,),
+                Expanded(
+                  child: Text(
+                    "Restaurant\n      & Cafe",
+                    style: TextStyle(
+                      fontSize: size.width * 0.075,
+                      fontWeight: FontWeight.w600,
+                      color: parmigianoGoldColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SliverFillRemaining(
+            child: Container(
+              color: Colors.black,
+              child: Stack(
+                children: [
+                  // bg image
+                  Positioned.fill(
+                    child: Image.asset(
+                      'lib/Images/BGImages/MobileScreenBG.webp',
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
 
-            // Dark overlay
-            Positioned.fill(
-              child: Container(
-                color: Colors.black.withOpacity(0.85),
+                  // Dark overlay
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.85),
+                    ),
+                  ),
+
+                  // Your page content goes here
+                  if (currentPageIndex == 1)...[
+                    MobileMenuPage()
+                  ]
+                  else...[
+                    MobileHomePage(
+                      refresh: () => setState(() {
+                        currentPageIndex = 1;
+                      }),
+                      size: size,
+                    )
+                  ]
+                ],
               ),
             ),
-
-            // Your page content goes here
-            if (currentPageIndex == 1)...[
-              MobileMenuPage()
-            ]
-            else...[
-              MobileHomePage(
-                refresh: () => setState(() {
-                  currentPageIndex = 1;
-                }),
-                size: size,
-              )
-            ]
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

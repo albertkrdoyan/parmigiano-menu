@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 
 class MenuItemCard extends StatefulWidget {
-  const MenuItemCard({super.key, required this.url, required this.subMenu, required this.index, required this.crossAxisCount});
+  const MenuItemCard({super.key, required this.url, required this.subMenu, required this.index, required this.crossAxisCount, required this.isMobile});
   final String subMenu, url;
   final int index;
   final int crossAxisCount;
+  final bool isMobile;
 
   @override
   State<MenuItemCard> createState() => _MenuItemCardState();
@@ -18,7 +19,7 @@ class _MenuItemCardState extends State<MenuItemCard> {
   Widget build(BuildContext context){
     final width = MediaQuery.of(context).size.width;
     final c = widget.crossAxisCount;
-    final subCardWidth = width * 0.78 / c - (c - 1) * 75 / c;
+    final subCardWidth = width * (widget.isMobile ? 0.68 : 0.78) / c - (c - 1) * 75 / c;
 
     return MouseRegion(
       onEnter: (event) => setState(() => isHovered = true),
@@ -68,7 +69,7 @@ class _MenuItemCardState extends State<MenuItemCard> {
                       bottom: isHovered ? 55 : 15,
                       left: 15,
                       child: Container(
-                        width: subCardWidth * 0.69,
+                        width: subCardWidth * 0.68,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: LinearGradient(
@@ -133,7 +134,7 @@ class _MenuItemCardState extends State<MenuItemCard> {
                       bottom: !isHovered ? 15 : 55/1.5,
                       right: 15,
                       child: Container(
-                        width: subCardWidth * 0.29,
+                        width: subCardWidth * 0.30,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             gradient: LinearGradient(

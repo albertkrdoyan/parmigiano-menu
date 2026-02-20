@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Desktop/DesktopHomePage.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Desktop/DesktopMenuPage.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
@@ -71,7 +72,6 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
             ),
           ),
           SliverFillRemaining(
-            hasScrollBody: true,
             child: Stack(
               children: [
                 // bg image
@@ -102,9 +102,9 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                 ]
               ],
             ),
-          ),
+          )
         ],
-      ),
+      )
     );
   }
 }
