@@ -92,7 +92,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   ),
                   child: SizedBox(
                     width: width * 0.85,
-                    height: height * 0.1,
+                    height: width * 0.15,
                     child: Center(
                       child: HoverableText(
                         text: "See Menu",

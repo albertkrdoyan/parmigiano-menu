@@ -11,6 +11,23 @@ class MobileMenuPage extends StatefulWidget {
 }
 
 class _MobileMenuPageState extends State<MobileMenuPage> {
+  late ScrollController _scrollController;
+  late ScrollController _scrollSubMenuController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollSubMenuController = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _scrollSubMenuController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     String url = 'https://pub-8d9b22e7eae042c0a88908f3d798b6bb.r2.dev/Պարմիջանո';
@@ -31,7 +48,6 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
               tween: Tween<double>(begin: 0, end: interval),
               duration: const Duration(milliseconds: 500),
               builder: (context, value, child) {
-                debugPrint(value.toString());
                 return Padding(
                   padding: EdgeInsets.only(top: value),
                   child: SizedBox(
@@ -53,6 +69,7 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                 ),
                 child: Center(
                   child: ListView(
+                    controller: _scrollSubMenuController,
                     padding: const EdgeInsets.all(10),
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -65,9 +82,18 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                             // color: Colors.red
                           ),
                           child: InkWell(
-                            onTap: () => setState(() {
-                              currentSubMenuIndex = i;
-                            }),
+                            onTap: () {
+                              setState(() {
+                                currentSubMenuIndex = i;
+                              });
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                _scrollController.animateTo(
+                                  0,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                );
+                              });
+                            },
                             child: HoverableText(
                               text: subMenu[i],
                               isActive: i == currentSubMenuIndex,
@@ -97,6 +123,7 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
             child: SizedBox(
               width: width * 0.85,
               child: GridView.builder(
+                controller: _scrollController,
                 itemCount: menu[sub]?.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: crossAxisCount,

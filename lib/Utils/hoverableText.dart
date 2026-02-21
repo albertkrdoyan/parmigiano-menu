@@ -26,6 +26,10 @@ class HoverableTextState extends State<HoverableText>{
         color: isHovered ? Colors.deepOrangeAccent : (widget.isActive ? (widget.activeColor == Colors.transparent ? Colors.blue : widget.activeColor) : mainColor)
     );
 
+    if (widget.isActive && widget.hasUnderline){
+      locations.add(locations.last + widget.text.length.toDouble() * 15 * widget.size / 25);
+    }
+
     return MouseRegion(
       onEnter: (context) => setState(() { isHovered = true; }),
       onExit: (context) => setState(() { isHovered = false; }),

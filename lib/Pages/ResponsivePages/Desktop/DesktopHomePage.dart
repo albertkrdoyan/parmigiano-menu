@@ -31,11 +31,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 duration: const Duration(milliseconds: 300),
                 tween: Tween<double>(begin: 0, end: interval),
                 builder: (context, value, child) {
-                  // debugPrint((interval - value).toString());
+                  double opacity = value / interval;
+                  double padding = interval - value;
                   return Opacity(
-                    opacity: value / interval,
+                    opacity: opacity > 1 ? 1 : opacity,
                     child: Padding(
-                      padding: EdgeInsetsGeometry.only(right: interval - value),
+                      padding: EdgeInsetsGeometry.only(right: padding < 0 ? 0 : padding),
                       child: child,
                     ),
                   );
@@ -55,11 +56,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 duration: const Duration(milliseconds: 300),
                 tween: Tween<double>(begin: 0, end: interval),
                 builder: (context, value, child) {
-                  // debugPrint((interval - value).toString());
+                  double opacity = value / interval;
+                  double padding = interval - value;
                   return Opacity(
-                    opacity: value / interval,
+                    opacity: opacity > 1 ? 1 : opacity,
                     child: Padding(
-                      padding: EdgeInsetsGeometry.only(left: (interval - value)/2),
+                      padding: EdgeInsetsGeometry.only(left: (padding < 0 ? 0 : padding)/2),
                       child: child,
                     ),
                   );
@@ -82,9 +84,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 duration: const Duration(milliseconds: 300),
                 tween: Tween<double>(begin: 0, end: interval),
                 builder: (context, value, child) {
-                  // debugPrint((interval - value).toString());
+                  double opacity = value / interval;
                   return Opacity(
-                    opacity: value / interval,
+                    opacity: opacity > 1 ? 1 : opacity,
                     child: child,
                   );
                 },
@@ -95,12 +97,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                   ),
                   child: SizedBox(
                     width: width * 0.25,
-                    height: height * 0.1,
+                    height: width * 0.06,
                     child: Center(
                       child: HoverableText(
                         text: "See Menu",
                         isActive: true,
-                        size: 32,
+                        size: width * 0.03,
                         noAnimation: true,
                         activeColor: Colors.transparent,
                         hasUnderline: false,

@@ -15,6 +15,7 @@ class _MobileMainPageState extends State<MobileMainPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    currentSubMenuIndex = 0;
 
     return Scaffold(
       drawer: Drawer(
@@ -95,7 +96,7 @@ class _MobileMainPageState extends State<MobileMainPage> {
                 SizedBox(width: 5,),
                 Expanded(
                   child: Text(
-                    "Restaurant\n      & Cafe",
+                    "Restaurant\n    & Cafe",
                     style: TextStyle(
                       fontSize: size.width * 0.075,
                       fontWeight: FontWeight.w600,

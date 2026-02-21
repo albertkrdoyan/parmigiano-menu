@@ -16,6 +16,7 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    currentSubMenuIndex = 0;
 
     return Scaffold(
       body: CustomScrollView(
@@ -42,11 +43,11 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                   ),
                   SizedBox(width: 15,),
                   Text(
-                    "Restaurant\n      & Cafe",
+                    "Restaurant\n    & Cafe",
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: parmigianoGoldColor,
                     ),
                   ),
                   SizedBox(width: 85),
