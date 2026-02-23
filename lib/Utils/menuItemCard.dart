@@ -18,6 +18,7 @@ class _MenuItemCardState extends State<MenuItemCard> {
   @override
   Widget build(BuildContext context){
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     final c = widget.crossAxisCount;
     final subCardWidth = width * (widget.isMobile ? 0.68 : 0.78) / c - (c - 1) * 75 / c;
 
@@ -167,3 +168,39 @@ class _MenuItemCardState extends State<MenuItemCard> {
     );
   }
 }
+
+/*
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+              color: Colors.black.withAlpha(175),
+              child: Container(
+                margin: EdgeInsetsGeometry.all(75),
+                width: width * 0.75,
+                height: height * 0.75,
+                color: Colors.green,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.close_fullscreen,
+                            size: 75,
+                            color: Colors.white70,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+* */
