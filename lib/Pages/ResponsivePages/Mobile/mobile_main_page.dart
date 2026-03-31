@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/MobileHomePage.dart';
-import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/MobileMenuPage.dart';
+import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/mobile_home_page.dart';
+import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/mobile_menu_page.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
-import 'Pages/MenuPage.dart';
+import 'Pages/menu_page.dart';
 import 'firebase_options.dart';
 
 void main() async {

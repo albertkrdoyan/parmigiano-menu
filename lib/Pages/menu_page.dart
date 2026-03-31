@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ResponsivePages/Desktop/DesktopMainPage.dart';
-import 'ResponsivePages/Mobile/MobileMainPage.dart';
+import 'ResponsivePages/Desktop/desktop_main_page.dart';
+import 'ResponsivePages/Mobile/mobile_main_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
