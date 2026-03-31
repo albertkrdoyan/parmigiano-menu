@@ -24,6 +24,7 @@ class Application extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Parmigiano Menu',
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.touch,
