@@ -69567,7 +69567,7 @@ r=t.F
 q=A.c([A.dd(o,A.EC("lib/Images/Logos/logo.png",B.fT),B.u,o,o,o,o,s,o,new A.aZ(0,8,0,8),o,o,o),A.cp(o,o,15),A.jk("Restaurant\n    & Cafe",A.fy(o,o,$.jP(),o,o,o,o,o,o,o,o,28,o,o,B.bL,o,o,!0,o,o,o,o,o,o,o,o),o),A.cp(o,o,85)],r)
 for(p=0;p<2;++p)B.b.J(q,A.c([A.uO(o,new A.iQ($.ap_[p],p===$.nZ,!1,25,!1,B.B,o),B.ap,!1,o,o,o,o,o,o,o,o,o,o,o,o,o,new A.acE(this,p),o,o,o),new A.kQ(45,o,o,o)],r))
 s=A.amc(B.j,!0,o,!1,!0,A.ep(A.alV(q,B.az,B.eT,B.bv),o,o),s)
-q=A.c([A.G1(0,A.EC("lib/Images/BGImages/DesktopScreenBG.png",B.jv)),A.G1(0,A.dd(o,o,B.u,A.at(217,B.j.A()>>>16&255,B.j.A()>>>8&255,B.j.A()&255),o,o,o,o,o,o,o,o,o))],r)
+q=A.c([A.G1(0,A.EC("lib/Images/BGImages/DesktopScreenBG.webp",B.jv)),A.G1(0,A.dd(o,o,B.u,A.at(217,B.j.A()>>>16&255,B.j.A()>>>8&255,B.j.A()&255),o,o,o,o,o,o,o,o,o))],r)
 if($.nZ===1)B.b.J(q,A.c([new A.u_(o)],r))
 else B.b.J(q,A.c([new A.tY(n.a,new A.acF(this),o)],r))
 return A.alX(A.ajy(A.c([s,A.amd(A.kS(B.bm,q,B.dO))],r)),o)}}
