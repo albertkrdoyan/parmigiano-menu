@@ -101,16 +101,16 @@ class _MobileMainPageState extends ConsumerState<MobileMainPage> {
                   ),
                 ),
                 SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    "Restaurant\n    & Cafe",
-                    style: TextStyle(
-                      fontSize: size.width * 0.055,
-                      fontWeight: FontWeight.w600,
-                      color: parmigianoGoldColor,
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   child: Text(
+                //     "Restaurant\n    & Cafe",
+                //     style: TextStyle(
+                //       fontSize: size.width * 0.055,
+                //       fontWeight: FontWeight.w600,
+                //       color: parmigianoGoldColor,
+                //     ),
+                //   ),
+                // ),
                 // language
                 SizedBox(
                   width: 100,
