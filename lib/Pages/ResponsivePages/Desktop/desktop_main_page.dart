@@ -1,17 +1,21 @@
+import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Desktop/desktop_home_page.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Desktop/desktop_menu_page.dart';
+import 'package:parmigiano_menu/Providers/menu_data_provider.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
 
-class DesktopMainPage extends StatefulWidget{
+class DesktopMainPage extends ConsumerStatefulWidget {
   const DesktopMainPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _StateDesktopMainPage();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _StateDesktopMainPage();
 }
 
-class _StateDesktopMainPage extends State<DesktopMainPage>{
+class _StateDesktopMainPage extends ConsumerState<DesktopMainPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -40,8 +44,8 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                       fit: BoxFit.contain,
                     ),
                   ),
-                  SizedBox(width: 15,),
-                  Text(
+                  const SizedBox(width: 15),
+                  const Text(
                     "Restaurant\n    & Cafe",
                     style: TextStyle(
                       fontSize: 28,
@@ -49,7 +53,7 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                       color: parmigianoGoldColor,
                     ),
                   ),
-                  SizedBox(width: 85),
+                  const SizedBox(width: 85),
 
                   for (int i = 0; i < pages.length; ++i) ...[
                     GestureDetector(
@@ -65,8 +69,52 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                         hasUnderline: false,
                       ),
                     ),
-                    SizedBox(width: 45),
+                    const SizedBox(width: 45),
                   ],
+
+                  // language
+                  SizedBox(
+                    width: 100,
+                    child: DropdownFlutter<String>(
+                      items: ['AM', 'RU', 'EN'],
+                      initialItem: 'AM',
+                      onChanged: (value) {
+                        ref.read(menuProvider.notifier).changeLanguage(value!);
+                        ref
+                            .read(subMenuProvider.notifier)
+                            .changeLanguage(value);
+                      },
+                    ),
+                  ),
+
+                  // for (int i = 0; i < languages.length; ++i) ...[
+                  //   Consumer(
+                  //     builder: (context, ref, child) {
+                  //       return GestureDetector(
+                  //         onTap: () {
+                  //           ref
+                  //               .read(languageIndicatorProvider.notifier)
+                  //               .changeLanguageIndicator(i);
+                  //           ref
+                  //               .read(menuProvider.notifier)
+                  //               .changeLanguage(languages[i]);
+                  //           ref
+                  //               .read(subMenuProvider.notifier)
+                  //               .changeLanguage(languages[i]);
+                  //         },
+                  //         child: HoverableText(
+                  //           text: languages[i],
+                  //           isActive: i == ref.watch(languageIndicatorProvider),
+                  //           size: 25,
+                  //           noAnimation: false,
+                  //           activeColor: Colors.transparent,
+                  //           hasUnderline: false,
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  //   const SizedBox(width: 45),
+                  // ],
                 ],
               ),
             ),
@@ -77,34 +125,31 @@ class _StateDesktopMainPage extends State<DesktopMainPage>{
                 // bg image
                 Positioned.fill(
                   child: Image.asset(
-                    'lib/Images/BGImages/DesktopScreenBG.png',
+                    'lib/Images/BGImages/DesktopScreenBG.webp',
                     fit: BoxFit.cover,
                   ),
                 ),
                 // Dark overlay
                 Positioned.fill(
-                  child: Container(
-                    color: Colors.black.withOpacity(0.85),
-                  ),
+                  child: Container(color: Colors.black.withOpacity(0.85)),
                 ),
-                // Your page content goes here
 
-                if (currentPageIndex == 1)...[
-                  DesktopMenuPage()
-                ]
-                else...[
+                // Your page content goes here
+                if (currentPageIndex == 1) ...[
+                  DesktopMenuPage(),
+                ] else ...[
                   DesktopHomePage(
                     size: size,
                     refresh: () => setState(() {
                       currentPageIndex = 1;
                     }),
-                  )
-                ]
+                  ),
+                ],
               ],
             ),
-          )
+          ),
         ],
-      )
+      ),
     );
   }
 }

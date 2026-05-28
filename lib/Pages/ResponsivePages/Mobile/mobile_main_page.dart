@@ -1,17 +1,20 @@
+import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/mobile_home_page.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/mobile_menu_page.dart';
+import 'package:parmigiano_menu/Providers/menu_data_provider.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
 
-class MobileMainPage extends StatefulWidget {
+class MobileMainPage extends ConsumerStatefulWidget {
   const MobileMainPage({super.key});
 
   @override
-  State<MobileMainPage> createState() => _MobileMainPageState();
+  ConsumerState<MobileMainPage> createState() => _MobileMainPageState();
 }
 
-class _MobileMainPageState extends State<MobileMainPage> {
+class _MobileMainPageState extends ConsumerState<MobileMainPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -34,7 +37,7 @@ class _MobileMainPageState extends State<MobileMainPage> {
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 15),
               Center(
                 child: Container(
                   width: size.width * 0.7,
@@ -42,7 +45,7 @@ class _MobileMainPageState extends State<MobileMainPage> {
                   color: mainColor,
                 ),
               ),
-              SizedBox(height: 35,),
+              SizedBox(height: 35),
 
               for (int i = 0; i < pages.length; ++i) ...[
                 GestureDetector(
@@ -75,7 +78,11 @@ class _MobileMainPageState extends State<MobileMainPage> {
             backgroundColor: Colors.black,
             leading: Builder(
               builder: (context) => IconButton(
-                icon: Icon(Icons.menu_rounded, color: parmigianoGoldColor, size: appBarHeight * 0.375,),
+                icon: Icon(
+                  Icons.menu_rounded,
+                  color: parmigianoGoldColor,
+                  size: appBarHeight * 0.375,
+                ),
                 onPressed: () => Scaffold.of(context).openDrawer(),
               ),
             ),
@@ -93,15 +100,27 @@ class _MobileMainPageState extends State<MobileMainPage> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5,),
+                SizedBox(width: 5),
                 Expanded(
                   child: Text(
                     "Restaurant\n    & Cafe",
                     style: TextStyle(
-                      fontSize: size.width * 0.075,
+                      fontSize: size.width * 0.055,
                       fontWeight: FontWeight.w600,
                       color: parmigianoGoldColor,
                     ),
+                  ),
+                ),
+                // language
+                SizedBox(
+                  width: 100,
+                  child: DropdownFlutter<String>(
+                    items: ['AM', 'RU', 'EN'],
+                    initialItem: 'AM',
+                    onChanged: (value) {
+                      ref.read(menuProvider.notifier).changeLanguage(value!);
+                      ref.read(subMenuProvider.notifier).changeLanguage(value);
+                    },
                   ),
                 ),
               ],
@@ -122,23 +141,20 @@ class _MobileMainPageState extends State<MobileMainPage> {
 
                   // Dark overlay
                   Positioned.fill(
-                    child: Container(
-                      color: Colors.black.withOpacity(0.85),
-                    ),
+                    child: Container(color: Colors.black.withOpacity(0.85)),
                   ),
 
                   // Your page content goes here
-                  if (currentPageIndex == 1)...[
-                    MobileMenuPage()
-                  ]
-                  else...[
+                  if (currentPageIndex == 1) ...[
+                    MobileMenuPage(),
+                  ] else ...[
                     MobileHomePage(
                       refresh: () => setState(() {
                         currentPageIndex = 1;
                       }),
                       size: size,
-                    )
-                  ]
+                    ),
+                  ],
                 ],
               ),
             ),

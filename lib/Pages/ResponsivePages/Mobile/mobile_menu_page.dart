@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:parmigiano_menu/Providers/menu_data_provider.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
 import 'package:parmigiano_menu/Utils/menuItemCard.dart';
 
-class MobileMenuPage extends StatefulWidget {
+class MobileMenuPage extends ConsumerStatefulWidget {
   const MobileMenuPage({super.key});
 
   @override
-  State<MobileMenuPage> createState() => _MobileMenuPageState();
+  ConsumerState<MobileMenuPage> createState() => _MobileMenuPageState();
 }
 
-class _MobileMenuPageState extends State<MobileMenuPage> {
+class _MobileMenuPageState extends ConsumerState<MobileMenuPage> {
   late ScrollController _scrollController;
   late ScrollController _scrollSubMenuController;
 
@@ -30,11 +32,17 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    String url = 'https://pub-8d9b22e7eae042c0a88908f3d798b6bb.r2.dev/Պարմիջանո';
-    String sub = subMenu[currentSubMenuIndex];
+    String url =
+        'https://pub-8d9b22e7eae042c0a88908f3d798b6bb.r2.dev/Պարմիջանո';
+    final subRead = ref.watch(subMenuProvider);
+    String sub = subRead[currentSubMenuIndex];
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final int crossAxisCount = width > 1200 ? 3 : width > 800 ? 2 : 1;
+    final int crossAxisCount = width > 1200
+        ? 3
+        : width > 800
+        ? 2
+        : 1;
     double interval = 15;
 
     return SizedBox(
@@ -52,10 +60,7 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                   padding: EdgeInsets.only(top: value),
                   child: SizedBox(
                     // height: 110 * value,
-                    child: Opacity(
-                        opacity: value / interval,
-                        child: child
-                    ),
+                    child: Opacity(opacity: value / interval, child: child),
                   ),
                 );
               },
@@ -64,8 +69,8 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                 height: 75,
                 width: width * 0.85,
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey.withAlpha(50),
-                    borderRadius: BorderRadius.circular(25)
+                  color: Colors.blueGrey.withAlpha(50),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 child: Center(
                   child: ListView(
@@ -73,10 +78,13 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                     padding: const EdgeInsets.all(10),
                     scrollDirection: Axis.horizontal,
                     children: [
-                      for (int i = 0; i < subMenu.length; ++i)...[
+                      for (int i = 0; i < subRead.length; ++i) ...[
                         Container(
                           margin: EdgeInsetsGeometry.symmetric(horizontal: 7),
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 3),
+                          padding: EdgeInsetsGeometry.symmetric(
+                            horizontal: 10,
+                            vertical: 3,
+                          ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             // color: Colors.red
@@ -95,7 +103,7 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                               });
                             },
                             child: HoverableText(
-                              text: subMenu[i],
+                              text: subRead[i],
                               isActive: i == currentSubMenuIndex,
                               size: 18,
                               noAnimation: true,
@@ -104,7 +112,7 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
                             ),
                           ),
                         ),
-                      ]
+                      ],
                     ],
                   ),
                 ),
@@ -119,29 +127,33 @@ class _MobileMenuPageState extends State<MobileMenuPage> {
               color: parmigianoGoldColor,
             ),
           ),
-          Expanded(
-            child: SizedBox(
-              width: width * 0.85,
-              child: GridView.builder(
-                controller: _scrollController,
-                itemCount: menu[sub]?.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  mainAxisSpacing: 14,
-                  crossAxisSpacing: 14,
-                  childAspectRatio: 1.5,
+          Consumer(
+            builder: (context, ref, child) {
+              return Expanded(
+                child: SizedBox(
+                  width: width * 0.85,
+                  child: GridView.builder(
+                    controller: _scrollController,
+                    itemCount: ref.watch(menuProvider)[sub]?.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      mainAxisSpacing: 14,
+                      crossAxisSpacing: 14,
+                      childAspectRatio: 1.5,
+                    ),
+                    // itemBuilder: (context, index) => Text('$sub \n$url/$sub/${menu[sub]![index][0]}${menu[sub]![index][4]}',style: TextStyle(color: Colors.white),),
+                    itemBuilder: (context, index) => MenuItemCard(
+                      isMobile: true,
+                      url: url + ref.read(menuProvider)[sub]![index][4],
+                      subMenu: sub,
+                      index: index,
+                      crossAxisCount: crossAxisCount,
+                    ),
+                  ),
                 ),
-                // itemBuilder: (context, index) => Text('$sub \n$url/$sub/${menu[sub]![index][0]}${menu[sub]![index][4]}',style: TextStyle(color: Colors.white),),
-                itemBuilder: (context, index) => MenuItemCard(
-                  isMobile: true,
-                  url: url,
-                  subMenu: sub,
-                  index: index,
-                  crossAxisCount: crossAxisCount,
-                )
-              ),
-            )
-          )
+              );
+            },
+          ),
         ],
       ),
     );

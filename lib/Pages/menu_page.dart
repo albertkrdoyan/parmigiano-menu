@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'ResponsivePages/Desktop/desktop_main_page.dart';
 import 'ResponsivePages/Mobile/mobile_main_page.dart';
 
@@ -9,12 +10,16 @@ class MenuPage extends StatefulWidget {
   State<MenuPage> createState() => _MenuPageState();
 }
 
-class _MenuPageState extends State<MenuPage>{
+class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth < 700) { return MobileMainPage(); }
-      return DesktopMainPage();
-    },);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 750) {
+          return MobileMainPage();
+        }
+        return DesktopMainPage();
+      },
+    );
   }
 }

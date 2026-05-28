@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:parmigiano_menu/Providers/menu_data_provider.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
 import 'package:parmigiano_menu/Utils/menuItemCard.dart';
 
-class DesktopMenuPage extends StatefulWidget {
+class DesktopMenuPage extends ConsumerStatefulWidget {
   const DesktopMenuPage({super.key});
 
   @override
-  State<DesktopMenuPage> createState() => _DesktopMenuPageState();
+  ConsumerState<DesktopMenuPage> createState() => _DesktopMenuPageState();
 }
 
-class _DesktopMenuPageState extends State<DesktopMenuPage> {
+class _DesktopMenuPageState extends ConsumerState<DesktopMenuPage> {
   late ScrollController _scrollController, _scrollSubMenuController;
 
   @override
@@ -29,11 +31,17 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    String url = 'https://pub-8d9b22e7eae042c0a88908f3d798b6bb.r2.dev/Պարմիջանո';
-    String sub = subMenu[currentSubMenuIndex];
+    String url =
+        'https://pub-8d9b22e7eae042c0a88908f3d798b6bb.r2.dev/Պարմիջանո';
+    final subRead = ref.watch(subMenuProvider);
+    String sub = subRead[currentSubMenuIndex];
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final int crossAxisCount = width > 1200 ? 3 : width > 700 ? 2 : 1;
+    final int crossAxisCount = width > 1200
+        ? 3
+        : width > 700
+        ? 2
+        : 1;
     double interval = 15;
 
     return SizedBox(
@@ -51,10 +59,7 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                   padding: EdgeInsets.only(top: value),
                   child: SizedBox(
                     // height: 110 * value,
-                    child: Opacity(
-                      opacity: value / interval,
-                      child: child
-                    ),
+                    child: Opacity(opacity: value / interval, child: child),
                   ),
                 );
               },
@@ -64,7 +69,7 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                 width: width * 0.85,
                 decoration: BoxDecoration(
                   color: Colors.blueGrey.withAlpha(50),
-                  borderRadius: BorderRadius.circular(25)
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 child: Center(
                   child: ListView(
@@ -72,10 +77,13 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                     padding: const EdgeInsets.all(10),
                     scrollDirection: Axis.horizontal,
                     children: [
-                      for (int i = 0; i < subMenu.length; ++i)...[
+                      for (int i = 0; i < subRead.length; ++i) ...[
                         Container(
                           margin: EdgeInsetsGeometry.symmetric(horizontal: 10),
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 15, vertical: 5),
+                          padding: EdgeInsetsGeometry.symmetric(
+                            horizontal: 15,
+                            vertical: 5,
+                          ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             // color: Colors.red
@@ -86,16 +94,6 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                                 currentSubMenuIndex = i;
                               });
                               WidgetsBinding.instance.addPostFrameCallback((_) {
-                                // _scrollSubMenuController.animateTo(
-                                //   locations[i],
-                                //   duration: const Duration(milliseconds: 500),
-                                //   curve: Curves.easeInOut,
-                                // );
-                                //
-                                // for (int i = 0; i < locations.length; ++i){
-                                //   debugPrint(locations[i].toString());
-                                // }
-
                                 _scrollController.animateTo(
                                   0,
                                   duration: const Duration(milliseconds: 500),
@@ -104,7 +102,7 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                               });
                             },
                             child: HoverableText(
-                              text: subMenu[i],
+                              text: subRead[i],
                               isActive: i == currentSubMenuIndex,
                               size: 25,
                               noAnimation: true,
@@ -113,7 +111,7 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
                             ),
                           ),
                         ),
-                      ]
+                      ],
                     ],
                   ),
                 ),
@@ -128,28 +126,32 @@ class _DesktopMenuPageState extends State<DesktopMenuPage> {
               color: parmigianoGoldColor,
             ),
           ),
-          Expanded(
-            child: SizedBox(
-              width: width * 0.85,
-              child: GridView.builder(
-                controller: _scrollController,
-                itemCount: menu[sub]?.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  mainAxisSpacing: 14,
-                  crossAxisSpacing: 14,
-                  childAspectRatio: 1.5,
+          Consumer(
+            builder: (context, ref, child) {
+              return Expanded(
+                child: SizedBox(
+                  width: width * 0.85,
+                  child: GridView.builder(
+                    controller: _scrollController,
+                    itemCount: ref.watch(menuProvider)[sub]?.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      mainAxisSpacing: 14,
+                      crossAxisSpacing: 14,
+                      childAspectRatio: 1.5,
+                    ),
+                    // itemBuilder: (context, index) => Text(ref.read(menuProvider)[sub].toString()),
+                    itemBuilder: (context, index) => MenuItemCard(
+                      isMobile: false,
+                      url: url + ref.read(menuProvider)[sub]![index][4],
+                      subMenu: sub,
+                      index: index,
+                      crossAxisCount: crossAxisCount,
+                    ),
+                  ),
                 ),
-                // itemBuilder: (context, index) => Text('$sub \n$url/$sub/${menu[sub]![index][0]}${menu[sub]![index][4]}',style: TextStyle(color: Colors.white),),
-                itemBuilder: (context, index) => MenuItemCard(
-                  isMobile: false,
-                  url: url,
-                  subMenu: sub,
-                  index: index,
-                  crossAxisCount: crossAxisCount,
-                )
-              ),
-            )
+              );
+            },
           ),
         ],
       ),
