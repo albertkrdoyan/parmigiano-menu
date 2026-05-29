@@ -1,11 +1,10 @@
-import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Desktop/desktop_home_page.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Desktop/desktop_menu_page.dart';
-import 'package:parmigiano_menu/Providers/menu_data_provider.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
+import 'package:parmigiano_menu/Utils/languageSelector.dart';
 
 class DesktopMainPage extends ConsumerStatefulWidget {
   const DesktopMainPage({super.key});
@@ -73,48 +72,7 @@ class _StateDesktopMainPage extends ConsumerState<DesktopMainPage> {
                   ],
 
                   // language
-                  SizedBox(
-                    width: 100,
-                    child: DropdownFlutter<String>(
-                      items: ['AM', 'RU', 'EN'],
-                      initialItem: 'AM',
-                      onChanged: (value) {
-                        ref.read(menuProvider.notifier).changeLanguage(value!);
-                        ref
-                            .read(subMenuProvider.notifier)
-                            .changeLanguage(value);
-                      },
-                    ),
-                  ),
-
-                  // for (int i = 0; i < languages.length; ++i) ...[
-                  //   Consumer(
-                  //     builder: (context, ref, child) {
-                  //       return GestureDetector(
-                  //         onTap: () {
-                  //           ref
-                  //               .read(languageIndicatorProvider.notifier)
-                  //               .changeLanguageIndicator(i);
-                  //           ref
-                  //               .read(menuProvider.notifier)
-                  //               .changeLanguage(languages[i]);
-                  //           ref
-                  //               .read(subMenuProvider.notifier)
-                  //               .changeLanguage(languages[i]);
-                  //         },
-                  //         child: HoverableText(
-                  //           text: languages[i],
-                  //           isActive: i == ref.watch(languageIndicatorProvider),
-                  //           size: 25,
-                  //           noAnimation: false,
-                  //           activeColor: Colors.transparent,
-                  //           hasUnderline: false,
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  //   const SizedBox(width: 45),
-                  // ],
+                  LanguageSelector(),
                 ],
               ),
             ),

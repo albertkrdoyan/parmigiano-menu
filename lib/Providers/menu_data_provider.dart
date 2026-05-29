@@ -8,18 +8,15 @@ class SubMenuProvider extends Notifier<List<String>> {
   }
 
   void changeLanguage(String lang) {
-    if (lang == 'AM') {
+    if (lang == languages[0]) {
       state = subMenuAm;
-    }
-    if (lang == 'EN') {
-      state = subMenuEn;
-    }
-    if (lang == 'RU') {
+    } else if (lang == languages[1]) {
       state = subMenuRu;
+    } else if (lang == languages[2]) {
+      state = subMenuEn;
     }
   }
 }
-
 final subMenuProvider = NotifierProvider<SubMenuProvider, List<String>>(() {
   return SubMenuProvider();
 });
@@ -31,19 +28,17 @@ class MenuProvider extends Notifier<Map<String, List<List<String>>>> {
   }
 
   void changeLanguage(String lang) {
-    if (lang == 'AM') {
+    if (lang == languages[0]) {
       state = menuAm;
-    }
-    if (lang == 'EN') {
-      state = menuEn;
-    }
-    if (lang == 'RU') {
+    } else if (lang == languages[1]) {
       state = menuRu;
+    } else if (lang == languages[2]) {
+      state = menuEn;
     }
   }
 }
-
 final menuProvider =
     NotifierProvider<MenuProvider, Map<String, List<List<String>>>>(() {
       return MenuProvider();
     });
+

@@ -1,11 +1,10 @@
-import 'package:dropdown_flutter/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/mobile_home_page.dart';
 import 'package:parmigiano_menu/Pages/ResponsivePages/Mobile/mobile_menu_page.dart';
-import 'package:parmigiano_menu/Providers/menu_data_provider.dart';
 import 'package:parmigiano_menu/Utils/constants.dart';
 import 'package:parmigiano_menu/Utils/hoverableText.dart';
+import 'package:parmigiano_menu/Utils/languageSelector.dart';
 
 class MobileMainPage extends ConsumerStatefulWidget {
   const MobileMainPage({super.key});
@@ -100,29 +99,9 @@ class _MobileMainPageState extends ConsumerState<MobileMainPage> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5),
-                // Expanded(
-                //   child: Text(
-                //     "Restaurant\n    & Cafe",
-                //     style: TextStyle(
-                //       fontSize: size.width * 0.055,
-                //       fontWeight: FontWeight.w600,
-                //       color: parmigianoGoldColor,
-                //     ),
-                //   ),
-                // ),
+                SizedBox(width: 15),
                 // language
-                SizedBox(
-                  width: 100,
-                  child: DropdownFlutter<String>(
-                    items: ['AM', 'RU', 'EN'],
-                    initialItem: 'AM',
-                    onChanged: (value) {
-                      ref.read(menuProvider.notifier).changeLanguage(value!);
-                      ref.read(subMenuProvider.notifier).changeLanguage(value);
-                    },
-                  ),
-                ),
+                LanguageSelector(),
               ],
             ),
           ),

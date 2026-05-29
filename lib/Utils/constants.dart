@@ -4,7 +4,7 @@ double appBarHeight = 0;
 
 // const List<String> pages = ["Menu"];
 const List<String> pages = ["Home", "Menu"];
-const List<String> languages = ["AM", "RU", "EN"];
+const List<String> languages = ["Հայ", "Рус", "Eng"];
 
 final Color mainColor = Color.fromARGB(255, 198, 167, 94);
 const Color parmigianoGoldColor = Color(0xFFC9A227);
