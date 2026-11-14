@@ -6,7 +6,7 @@ header {
   align-items: center;
   background-color: black;
   gap: 10%;
-  /* min-width: var(--min-width); */
+  min-width: var(--min-width);
 
   position: fixed;
   top: 0;
@@ -16,5 +16,5 @@ header {
   z-index: 10;
 
   width: 100%;
-  min-width: 0;
+  
 }
