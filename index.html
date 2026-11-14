@@ -12,5 +12,26 @@
       // window.location.replace("https://parmigiano-menu-old.pages.dev/");
     </script>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const calculateHeight = () => {
+        const header = document.querySelector("header");
+        const scrollbar = document.querySelector(".scrollbar");
+        const menuCardArea = document.querySelector(".menu-card-area");
+
+        if (!header || !scrollbar || !menuCardArea) {
+          return;
+        }
+
+        const headerHeight = header.offsetHeight;
+        const scrollbarHeight = scrollbar.offsetHeight;
+        // const scrollbarMarginTop = parseFloat(getComputedStyle(scrollbar).marginTop);
+
+        menuCardArea.style.marginTop = `${headerHeight + scrollbarHeight}px`;
+
+        // console.log(menuCardArea.style.marginTop, headerHeight, scrollbarHeight, scrollbarMarginTop)
+      };
+
+      window.addEventListener("load", calculateHeight);
+    </script>
   </body>
 </html>

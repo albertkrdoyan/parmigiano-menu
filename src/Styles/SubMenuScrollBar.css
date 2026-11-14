@@ -1,61 +1,63 @@
 .scrollbar {
-    background: linear-gradient(90deg, #232526, #414345);
-    max-width: 90%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin: 5px 0;
+  background: linear-gradient(90deg, #232526, #414345);
+  max-width: 90%;
+  overflow-x: auto;
+  overflow-y: hidden;
 
-    padding: 15px 20px;
-    border-radius: 12px;
+  margin: 5px 0;
 
-    scrollbar-width: none;
-    transition: 0.2s ease;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+  padding: 15px 20px;
+  border-radius: 12px;
 
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
+  scrollbar-width: none;
+  transition: 0.2s ease;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
 
-    &.dragging {
-        cursor: grabbing;
-        scroll-behavior: auto;
-    }
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 5;
 
-    ul {
-        list-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 12px;
+  &.dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+  }
 
-        width: max-content;
-        min-width: 100%;
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
 
-        li {
-            white-space: nowrap;
-            font-size: 1.5em;
-            font-weight: 500;
-            color: var(--p-gold);
-            background-color: #444;
+    width: max-content;
+    min-width: 100%;
 
-            padding: 10px 22px;
-            border-radius: 25px;
+    li {
+      white-space: nowrap;
+      font-size: 1.5em;
+      font-weight: 500;
+      color: var(--p-gold);
+      background-color: #444;
 
-            cursor: pointer;
-            transition: 0.2s ease;
+      padding: 10px 22px;
+      border-radius: 25px;
 
-            &:hover {
-                background-color: #222;
-                color: orange;
-                transform: translateY(-2px);
-            }
-        }
-    }
-    .selected-item {
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
         background-color: #222;
-        color: green;
-        border: 1px solid green;
-        transition: 0.2s ease;
+        color: orange;
+        transform: translateY(-2px);
+      }
     }
+  }
+  .selected-item {
+    background-color: #222;
+    color: green;
+    border: 1px solid green;
+    transition: 0.2s ease;
+  }
 }

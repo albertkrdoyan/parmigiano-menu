@@ -53,10 +53,12 @@ const App = () => {
   useEffect(() => {
     const footer = document.querySelector("footer");
     const header = document.querySelector("header");
+    const subMenuScrollbar = document.getElementById("scrollbar-container");
 
     const handleScroll = () => {
       footer.style.left = `-${window.scrollX}px`;
       header.style.left = `-${window.scrollX}px`;
+      subMenuScrollbar.style.left = `-${window.scrollX}px`;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -64,7 +66,7 @@ const App = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); 
+  }, []);
 
   return (
     <>

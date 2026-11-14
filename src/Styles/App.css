@@ -89,7 +89,4 @@ body {
   main {
     margin-top: var(--header-height-desktop);
   }
-  .menu-card-area {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 }

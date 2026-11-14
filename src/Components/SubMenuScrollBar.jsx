@@ -91,6 +91,7 @@ export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI }) => {
 
   return (
     <div
+      id="scrollbar"
       className={`scrollbar ${dragging ? "dragging" : ""}`}
       ref={scrollRef}
       onMouseDown={handleMouseDown}
