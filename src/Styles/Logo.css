@@ -1,0 +1,29 @@
+.logo {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .img {
+    display: inline;    
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 100%;      
+      object-fit: contain;      
+    }
+  }
+
+  p {
+    display: inline;
+    margin-left: 15px;
+    color: var(--p-gold);    
+    display: block;
+    font-size: 1.8em;
+    text-align: center;
+  }
+}

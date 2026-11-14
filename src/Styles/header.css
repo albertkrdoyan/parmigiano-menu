@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  /* flex-grow: 0;
+  flex-shrink: 0; */
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  gap: 10%;
+  min-width: var(--min-width);  
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 10;
+}

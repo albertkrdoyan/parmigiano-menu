@@ -1,0 +1,23 @@
+footer {
+  background-color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-width: var(--min-width);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* overflow: hidden; */
+
+  p {
+    text-align: center;
+    padding: 6px 0;
+    color: var(--main-color);
+    font-size: 1.35em;
+  }
+}

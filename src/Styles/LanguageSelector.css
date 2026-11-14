@@ -1,0 +1,57 @@
+.lang-selector {
+  width: 150px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.15em;
+  color: white;
+  z-index: 10;  
+
+  .selected-lang {
+    width: 165px;
+    padding: 0.6em 3em 0.6em 1.6em;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: black;
+    transition: 0.3s;
+  }
+
+  &:hover .selected-lang {
+    border-color: var(--main-color);
+    color: var(--p-gold);
+    box-shadow: 0 0 0 2px var(--p-gold);
+  }
+
+  &.open .lang-arrow {
+    transform: translateY(-30%) rotate(225deg);
+  }
+
+  .lang-options {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background: black;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .lang-option {
+    padding: 0.7em 1em;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background: #333;
+      color: var(--p-gold);
+    }
+
+    &.selected {
+      color: var(--main-color);
+    }
+  }
+}

@@ -1,0 +1,61 @@
+.scrollbar {
+    background: linear-gradient(90deg, #232526, #414345);
+    max-width: 90%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 5px 0;
+
+    padding: 15px 20px;
+    border-radius: 12px;
+
+    scrollbar-width: none;
+    transition: 0.2s ease;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &.dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+
+        width: max-content;
+        min-width: 100%;
+
+        li {
+            white-space: nowrap;
+            font-size: 1.5em;
+            font-weight: 500;
+            color: var(--p-gold);
+            background-color: #444;
+
+            padding: 10px 22px;
+            border-radius: 25px;
+
+            cursor: pointer;
+            transition: 0.2s ease;
+
+            &:hover {
+                background-color: #222;
+                color: orange;
+                transform: translateY(-2px);
+            }
+        }
+    }
+    .selected-item {
+        background-color: #222;
+        color: green;
+        border: 1px solid green;
+        transition: 0.2s ease;
+    }
+}
