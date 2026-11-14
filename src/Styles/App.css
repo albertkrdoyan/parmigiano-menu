@@ -43,7 +43,7 @@ body {
 /* Mobile */
 @media (max-width: 767px) {
   header {
-    height: 63px;
+    height: var(--header-height-mobile);
   }
   main {
     margin-top: var(--header-height-mobile);
