@@ -29,6 +29,22 @@
         menuCardArea.style.marginTop = `${headerHeight + scrollbarHeight}px`;
 
         // console.log(menuCardArea.style.marginTop, headerHeight, scrollbarHeight, scrollbarMarginTop)
+        const viewport = document.documentElement.clientWidth;
+
+
+      //   return;
+      //   document.querySelectorAll("*").forEach((element) => {
+      //     const rect = element.getBoundingClientRect();
+
+      //     if (rect.right > viewport || rect.left < 0) {
+      //       console.log(element.outerHTML, {
+      //         left: rect.left,
+      //         right: rect.right,
+      //         width: rect.width,
+      //         minWidth: getComputedStyle(element).minWidth,
+      //       });
+      //     }
+      //   });
       };
 
       window.addEventListener("load", calculateHeight);
