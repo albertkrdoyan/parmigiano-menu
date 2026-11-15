@@ -41,6 +41,15 @@ export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {
   //   });
   // }, [selectedSMI]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top : 0,
+      behavior: "smooth",
+    });
+
+    // menuAreaRef.current.focus();
+  }, [menuByCategory]);
+
   return (
     <div className="menu-card-area">
       {menuByCategory.map((item, key) => (

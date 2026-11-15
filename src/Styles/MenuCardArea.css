@@ -19,6 +19,10 @@
   z-index: 2;
 }
 
+.empty-card{
+  height: 1px;
+}
+
 .menu-card {
   display: flex;
   flex: 0 0 calc(33.333% - 10px);
