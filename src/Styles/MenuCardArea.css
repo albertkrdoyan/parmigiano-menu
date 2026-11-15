@@ -81,7 +81,7 @@
     margin: 0 15px 15px 0;
     width: 25%;
     text-align: center;
-    text-wrap: balance;
+    text-wrap: nowrap;
   }
 
   .size {
