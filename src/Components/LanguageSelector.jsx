@@ -1,5 +1,5 @@
 import '../Styles/LanguageSelector.css'
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 function LanguageSelector({onLangChange}) {
   const [isOpen, setIsOpen] = useState(false);

@@ -50,7 +50,7 @@ export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {
             <p className="size">{item[1]}</p>
             <p className="name">{item[0]}</p>
           </div>
-          <p className="price">{item[2]}</p>
+          <p className="price">{item[2]} &#x58F;</p>
         </div>
       ))}
     </div>
