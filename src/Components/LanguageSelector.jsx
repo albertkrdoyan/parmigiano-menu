@@ -1,16 +1,17 @@
-import '../Styles/LanguageSelector.css'
+import "../Styles/LanguageSelector.css";
+import "flag-icons/css/flag-icons.min.css";
 import { useState, useRef } from "react";
 
-function LanguageSelector({onLangChange}) {
+function LanguageSelector({ onLangChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("arm");
 
   const selectorRef = useRef(null);
 
   const languages = [
-    { value: "arm", label: "Հայերեն" },
-    { value: "rus", label: "Русский" },
-    { value: "eng", label: "English" },
+    { value: "arm", label: "Հայերեն", flag: <span className="fi fi-am"></span> },
+    { value: "rus", label: "Русский", flag: <span className="fi fi-ru"></span> },
+    { value: "eng", label: "English", flag: <span className="fi fi-us"></span> },
   ];
 
   function handleSelect(value) {
@@ -21,8 +22,9 @@ function LanguageSelector({onLangChange}) {
 
   return (
     <div className={`lang-selector ${isOpen ? "open" : ""}`} ref={selectorRef}>
-      <div className="selected-lang" onClick={() => setIsOpen(!isOpen)}>
-        {languages.find((lang) => lang.value === selectedLang).label}
+      <div className="selected-lang" onClick={() => setIsOpen(!isOpen)}>                
+        <span className="language-label">{languages.find((lang) => lang.value === selectedLang).label}</span>
+        {languages.find((lang) => lang.value === selectedLang).flag}        
       </div>
 
       {isOpen && (
@@ -34,8 +36,9 @@ function LanguageSelector({onLangChange}) {
                 selectedLang === lang.value ? "selected" : ""
               }`}
               onClick={() => handleSelect(lang.value)}
-            >
-              {lang.label}
+              >
+              <span className="language-label">{lang.label}</span>
+              {lang.flag}
             </div>
           ))}
         </div>
