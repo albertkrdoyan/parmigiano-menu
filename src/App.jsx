@@ -68,6 +68,30 @@ const App = () => {
     };
   }, []);
 
+  // position fixed scroll
+  useEffect(() => {
+    const calculateHeight = () => {
+      const header = document.querySelector("header");
+      const scrollbar = document.querySelector(".scrollbar");
+      const menuCardArea = document.querySelector(".menu-card-area");
+
+      if (!header || !scrollbar || !menuCardArea) {
+        return;
+      }
+
+      const headerHeight = header.offsetHeight;
+      const scrollbarHeight = scrollbar.offsetHeight;
+      // const scrollbarMarginTop = parseFloat(getComputedStyle(scrollbar).marginTop);
+
+      menuCardArea.style.marginTop = `${headerHeight + scrollbarHeight * 0.85}px`;
+
+      // console.log(menuCardArea.style.marginTop, headerHeight, scrollbarHeight, scrollbarMarginTop)
+      const viewport = document.documentElement.clientWidth;
+    };
+
+    calculateHeight();
+  }, []);
+
   return (
     <>
       <Header onLangChange={OnLangChange} />

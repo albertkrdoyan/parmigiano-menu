@@ -40,22 +40,38 @@ body {
   position: relative;
 }
 
-@media (max-width: 375px) {
-  :root{
+@media (max-width: 475px) {
+  :root {
     --min-width: 320px;
   }
   .logo {
     p {
       font-size: 1.35em;
     }
-    .img{
+    .img {
       margin-left: 15px;
       height: 75%;
     }
   }
-  footer{
+  footer {
     p {
       font-size: 1.0125em;
+    }
+  }
+  .lang-selector {
+    font-size: 1em;
+    width: 100px;
+    margin-right: 35px;
+    .selected-lang {
+      justify-content: center;
+      width: 50px;
+      padding: 0.5em;
+      span {
+        padding: 0.5em;
+      }
+    }
+    .language-label {
+      display: none;
     }
   }
 }
@@ -73,27 +89,11 @@ body {
       linear-gradient(rgba(0, 0, 0, 0.7), rgba(2, 2, 2, 0.8)),
       url("/Background/MobileScreenBG.webp");
   }
-  .lang-selector {
-    font-size: 1em;
-    width: 100px;
-    margin-right: 35px;
-    .selected-lang {
-      justify-content: center;
-      width: 50px;
-      padding: 0.5em;
-      span {
-        padding: 0.5em;
-      }
-    }
-  }
   .scrollbar ul li {
     font-size: 1.15em;
   }
   .menu-card {
     flex-basis: 100%;
-  }
-  .language-label {
-    display: none;
   }
 }
 
