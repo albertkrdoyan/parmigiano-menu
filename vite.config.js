@@ -22,4 +22,13 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    // JavaScript browser compatibility
+    target: ["chrome80", "edge80", "firefox78", "safari15"],
+
+    // CSS browser compatibility
+    cssTarget: ["chrome80", "edge80", "firefox78", "safari15"],
+
+    cssMinify: "lightningcss",
+  },
 });
