@@ -17,6 +17,17 @@
 }
 
 body {
+  position: relative;
+  background: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
   background-image:
     -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(2, 2, 2, 0.8)),
     url("/Background/DesktopScreenBG.webp");
@@ -28,9 +39,6 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  /* Safari and mobile compatibility */
-  background-attachment: scroll;
 }
 
 .root {
