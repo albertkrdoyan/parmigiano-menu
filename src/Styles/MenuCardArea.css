@@ -1,7 +1,6 @@
 .menu-card-area {
-  width: 87.5%;  
+  width: 87.5%;
   max-width: 1920px;
-  /* width: 87.5vw; */
   min-height: var(--min-width);
   height: 100%;
   min-height: 0;
@@ -19,7 +18,7 @@
   z-index: 2;
 }
 
-.empty-card{
+.empty-card {
   height: 1px;
 }
 
@@ -39,77 +38,75 @@
   cursor: pointer;
 
   z-index: 2;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    padding: 3.5px;
-    position: absolute;
-  }
+.menu-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  padding: 3.5px;
+  position: absolute;
+}
 
-  .name,
-  .price,
-  .size {
-    position: absolute;
-    display: inline;
-    font-size: 105%;
-    color: white;
-    width: 60%;
-    padding: 10px 25px;
-    border-radius: 12px;
-    margin: 0 0 15px 15px;
-    text-wrap: balance;
-    background: linear-gradient(
-      120deg,
-      #111111bf 0%,
-      #292929bf 50%,
-      #202020bf 100%
-    );
-    transition: 250ms ease-in-out;
-  }
+.menu-card .name,
+.menu-card .price,
+.menu-card .size {
+  position: absolute;
+  display: inline;
+  font-size: 105%;
+  color: white;
+  width: 60%;
+  padding: 10px 25px;
+  border-radius: 12px;
+  margin: 0 0 15px 15px;
+  text-wrap: balance;
+  background: linear-gradient(
+    120deg,
+    #111111bf 0%,
+    #292929bf 50%,
+    #202020bf 100%
+  );
+  transition: 250ms ease-in-out;
+}
 
-  .name-size {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    position: absolute;
-    margin: 0 0 15px 15px;
-  }
+.menu-card .name-size {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: absolute;
+  margin: 0 0 15px 15px;
+}
 
-  .price {
-    right: 0;
-    margin: 0 15px 15px 0;
-    width: 25%;
-    text-align: center;
-    text-wrap: nowrap;
-  }
+.menu-card .price {
+  right: 0;
+  margin: 0 15px 15px 0;
+  width: 25%;
+  text-align: center;
+  text-wrap: nowrap;
+}
 
-  .size {
-    scale: 0;
-  }
+.menu-card .size {
+  scale: 0;
+}
 
-  .name,
-  .size {
-    position: relative;
-    width: 100%;
-    margin: 6px 0 0 0;
-  }
+.menu-card .name,
+.menu-card .size {
+  position: relative;
+  width: 100%;
+  margin: 6px 0 0 0;
+}
 
-  &:hover {
-    scale: 1.025;
-  }
+.menu-card:hover {
+  scale: 1.025;
+}
 
-  &:hover {
-    .size,
-    .name,
-    .price {
-      background: linear-gradient(90deg, #232526, #414345);
-      scale: 1;
-      color: whitesmoke;
-    }
-  }
+.menu-card:hover .size,
+.menu-card:hover .name,
+.menu-card:hover .price {
+  background: linear-gradient(90deg, #232526, #414345);
+  scale: 1;
+  color: whitesmoke;
 }

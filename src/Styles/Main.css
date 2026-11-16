@@ -4,23 +4,22 @@ main {
   justify-items: flex-start;
   align-items: center;
 
-  min-width: var(--min-width);  
+  min-width: var(--min-width);
 
   width: 100%;
-  
+}
 
-  .scrollbar-container {
-    display: flex;    
-    justify-content: center;
-    align-items: center;
+main .scrollbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    position: fixed;
+  position: fixed;
 
-    flex: 0 0;
-    max-width: 1920px;
-    width: 100%;
-    min-width: var(--min-width);   
+  flex: 0 0;
+  max-width: 1920px;
+  width: 100%;
+  min-width: var(--min-width);
 
-    z-index: 5;
-  }
+  z-index: 5;
 }

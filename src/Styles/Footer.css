@@ -13,12 +13,12 @@ footer {
   left: 0;
   right: 0;
 
-  z-index: 5;  
+  z-index: 5;
+}
 
-  p {
-    text-align: center;
-    padding: 6px 0;
-    color: var(--main-color);
-    font-size: 1.35em;
-  }
+footer p {
+  text-align: center;
+  padding: 6px 0;
+  color: var(--main-color);
+  font-size: 1.35em;
 }

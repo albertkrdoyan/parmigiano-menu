@@ -10,7 +10,7 @@
   color: white;
   z-index: 10;  
 
-  span{
+  .selected-lang span, .lang-selector span{
     border-radius: 4px;
   }
 
