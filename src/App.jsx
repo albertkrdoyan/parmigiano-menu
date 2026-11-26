@@ -26,6 +26,7 @@ const App = () => {
     const LoadData = async () => {
       try {
         // console.log("Language changed:", language);
+        // console.log(`${API_URL}/api/${language}`);
 
         const res = await fetch(`${API_URL}/api/${language}`, {
           signal: controller.signal,
@@ -36,6 +37,8 @@ const App = () => {
         }
 
         const data = await res.json();
+
+        // console.log(data.subMenu)
         setSubMenu(data.subMenu);
       } catch (error) {
         if (error.name !== "AbortError") {

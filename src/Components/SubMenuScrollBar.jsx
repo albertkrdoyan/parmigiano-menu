@@ -109,10 +109,9 @@ export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI }) => {
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => {
                 setSelectedSMI(index);
-                // console.log(index, " ", selectedSMI);
               }}
             >
-              {item}
+              {Object.values(item)[0]}
             </li>
           ))}
       </ul>

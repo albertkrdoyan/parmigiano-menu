@@ -4,7 +4,7 @@ import "../Styles/MenuCardArea.css";
 const IMG_URL = import.meta.env.VITE_IMAGE_URL;
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {
+export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {//smi -> selected sub menu item
   const [menuByCategory, setMenuByCategory] = useState([]);
 
   //get menu from server
@@ -54,12 +54,12 @@ export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {
     <div className="menu-card-area">
       {menuByCategory.map((item, key) => (
         <div className="menu-card" key={key}>
-          <img src={`${IMG_URL}${encodeURIComponent(item[4])}`} alt={item[0]} />
+          <img src={`${IMG_URL}${encodeURIComponent(Object.values(item)[4])}`} alt={Object.values(item)[0]} />
           <div className="name-size">
-            <p className="size">{item[1]}</p>
-            <p className="name">{item[0]}</p>
+            <p className="size">{Object.values(item)[1]}</p>
+            <p className="name">{Object.values(item)[0]}</p>
           </div>
-          <p className="price">{item[2]} &#x58F;</p>
+          <p className="price">{Object.values(item)[2]} &#x58F;</p>
         </div>
       ))}
     </div>
