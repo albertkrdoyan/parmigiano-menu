@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import "../Styles/SubMenuScrollBar.css";
 
-export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI }) => {
+export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI, setIsLoading }) => {
   const scrollRef = useRef(null);
   const itemRefs = useRef([]);
 
@@ -109,6 +109,7 @@ export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI }) => {
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => {
                 setSelectedSMI(index);
+                setIsLoading(true);
               }}
             >
               {Object.values(item)[0]}

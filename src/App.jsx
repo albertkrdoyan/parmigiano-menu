@@ -12,6 +12,7 @@ const App = () => {
   const [language, setLanguage] = useState("arm");
   const [subMenu, setSubMenu] = useState([]);
   const [selectedSMI, setSelectedSMI] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const OnLangChange = (value) => {
     setLanguage(value);
@@ -103,6 +104,8 @@ const App = () => {
         subMenu={subMenu}
         selectedSMI={selectedSMI}
         setSelectedSMI={setSelectedSMI}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
       <Footer language={language} />
     </>

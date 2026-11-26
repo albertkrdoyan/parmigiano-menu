@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { LoadingMenuCards } from "./LoadingMenuCards";
+
 import "../Styles/MenuCardArea.css";
 
 const IMG_URL = import.meta.env.VITE_IMAGE_URL;
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {//smi -> selected sub menu item
+export const MenuCardArea = ({ language, subMenu, selectedSMI,isLoading, setIsLoading }) => {//smi -> selected sub menu item
   const [menuByCategory, setMenuByCategory] = useState([]);
 
   //get menu from server
@@ -29,17 +31,13 @@ export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {//smi -> se
       } catch (error) {
         console.log(error);
       }
+      finally{
+        setIsLoading(false);
+      }
     };
 
     GetMenu();
   }, [selectedSMI, subMenu]);
-
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth",
-  //   });
-  // }, [selectedSMI]);
 
   useEffect(() => {
     window.scrollTo({
@@ -52,7 +50,7 @@ export const MenuCardArea = ({ language, subMenu, selectedSMI }) => {//smi -> se
 
   return (
     <div className="menu-card-area">
-      {menuByCategory.map((item, key) => (
+      {isLoading ? <LoadingMenuCards/> : menuByCategory.map((item, key) => (
         <div className="menu-card" key={key}>
           <img src={`${IMG_URL}${encodeURIComponent(Object.values(item)[4])}`} alt={Object.values(item)[0]} />
           <div className="name-size">
