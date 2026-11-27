@@ -1,7 +1,15 @@
 import { useRef, useState, useEffect } from "react";
 import "../Styles/SubMenuScrollBar.css";
 
-export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI, setIsLoading }) => {
+export const SubMenuScrollBar = ({
+  subMenu,
+  selectedSMI,
+  setSelectedSMI,
+  isLoading,
+  setIsLoading,
+  isSMSBLoading,
+  setIsSMSBLoading
+}) => {
   const scrollRef = useRef(null);
   const itemRefs = useRef([]);
 
@@ -101,7 +109,9 @@ export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI, setIsLo
       onClickCapture={handleClick}
     >
       <ul>
-        {Array.isArray(subMenu) &&
+        {isSMSBLoading ? (
+          <SubMenuScrollBarLoading />
+        ) : (
           subMenu.map((item, index) => (
             <li
               key={index}
@@ -109,13 +119,22 @@ export const SubMenuScrollBar = ({ subMenu, selectedSMI, setSelectedSMI, setIsLo
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => {
                 setSelectedSMI(index);
-                setIsLoading(true);
+                if (selectedSMI !== index) setIsLoading(true);
               }}
             >
               {Object.values(item)[0]}
             </li>
-          ))}
+          ))
+        )}
       </ul>
     </div>
   );
+};
+
+const SubMenuScrollBarLoading = () => {
+  return Array.from({ length: 10 }, (_, i) => (
+    <li key={i} className="skeleton">
+      ㅤㅤㅤㅤㅤㅤ
+    </li>
+  ));
 };

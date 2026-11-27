@@ -9,6 +9,8 @@ const Main = ({
   setSelectedSMI,
   isLoading,
   setIsLoading,
+  isSMSBLoading,
+  setIsSMSBLoading
 }) => {
   return (
     <main>
@@ -17,7 +19,10 @@ const Main = ({
           subMenu={subMenu}
           selectedSMI={selectedSMI}
           setSelectedSMI={setSelectedSMI}
+          isLoading={isLoading}
           setIsLoading={setIsLoading}
+          isSMSBLoading={isSMSBLoading}
+          setIsSMSBLoading={setIsSMSBLoading}
         />
       </div>
       <MenuCardArea

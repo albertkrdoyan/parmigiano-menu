@@ -13,6 +13,7 @@ const App = () => {
   const [subMenu, setSubMenu] = useState([]);
   const [selectedSMI, setSelectedSMI] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSMSBLoading, setIsSMSBLoading] = useState(true);
 
   const OnLangChange = (value) => {
     setLanguage(value);
@@ -45,6 +46,8 @@ const App = () => {
         if (error.name !== "AbortError") {
           console.error(error);
         }
+      } finally {
+        setIsSMSBLoading(false);
       }
     };
 
@@ -85,11 +88,9 @@ const App = () => {
 
       const headerHeight = header.offsetHeight;
       const scrollbarHeight = scrollbar.offsetHeight;
-      // const scrollbarMarginTop = parseFloat(getComputedStyle(scrollbar).marginTop);
 
-      menuCardArea.style.marginTop = `${headerHeight + scrollbarHeight * 0.85}px`;
+      menuCardArea.style.marginTop = `${headerHeight + scrollbarHeight * 0.35}px`;
 
-      // console.log(menuCardArea.style.marginTop, headerHeight, scrollbarHeight, scrollbarMarginTop)
       const viewport = document.documentElement.clientWidth;
     };
 
@@ -98,7 +99,11 @@ const App = () => {
 
   return (
     <>
-      <Header onLangChange={OnLangChange} />
+      <Header
+        onLangChange={OnLangChange}
+        setIsLoading={setIsLoading}
+        setIsSMSBLoading={setIsSMSBLoading}
+      />
       <Main
         language={language}
         subMenu={subMenu}
@@ -106,6 +111,8 @@ const App = () => {
         setSelectedSMI={setSelectedSMI}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
+        isSMSBLoading={isSMSBLoading}
+        setIsSMSBLoading={setIsSMSBLoading}
       />
       <Footer language={language} />
     </>

@@ -1,11 +1,11 @@
 /* Skeleton card background */
-.menu-card.skeleton-card {
+.skeleton-card {
   overflow: hidden;
   cursor: default;
   pointer-events: none;
 }
 
-.menu-card.skeleton-card::after {
+.skeleton-card::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -58,12 +58,12 @@
 }
 
 /* Disable any card hover transformations */
-.menu-card.skeleton-card:hover {
+.skeleton-card:hover {
   scale: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .menu-card.skeleton-card,
+  .skeleton-card,
   .skeleton::after {
     animation: none;
   }

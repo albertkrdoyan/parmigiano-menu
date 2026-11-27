@@ -2,29 +2,49 @@ import "../Styles/LanguageSelector.css";
 import "flag-icons/css/flag-icons.min.css";
 import { useState, useRef } from "react";
 
-function LanguageSelector({ onLangChange }) {
+function LanguageSelector({
+  onLangChange,
+  setIsLoading,
+  setIsSMSBLoading,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("arm");
 
   const selectorRef = useRef(null);
 
   const languages = [
-    { value: "arm", label: "Հայերեն", flag: <span className="fi fi-am"></span> },
-    { value: "rus", label: "Русский", flag: <span className="fi fi-ru"></span> },
-    { value: "eng", label: "English", flag: <span className="fi fi-us"></span> },
+    {
+      value: "arm",
+      label: "Հայերեն",
+      flag: <span className="fi fi-am"></span>,
+    },
+    {
+      value: "rus",
+      label: "Русский",
+      flag: <span className="fi fi-ru"></span>,
+    },
+    {
+      value: "eng",
+      label: "English",
+      flag: <span className="fi fi-us"></span>,
+    },
   ];
 
   function handleSelect(value) {
     setSelectedLang(value);
     setIsOpen(false);
     onLangChange(value);
+    setIsLoading(true);
+    setIsSMSBLoading(true);
   }
 
   return (
     <div className={`lang-selector ${isOpen ? "open" : ""}`} ref={selectorRef}>
-      <div className="selected-lang" onClick={() => setIsOpen(!isOpen)}>                
-        <span className="language-label">{languages.find((lang) => lang.value === selectedLang).label}</span>
-        {languages.find((lang) => lang.value === selectedLang).flag}        
+      <div className="selected-lang" onClick={() => setIsOpen(!isOpen)}>
+        <span className="language-label">
+          {languages.find((lang) => lang.value === selectedLang).label}
+        </span>
+        {languages.find((lang) => lang.value === selectedLang).flag}
       </div>
 
       {isOpen && (
@@ -35,8 +55,10 @@ function LanguageSelector({ onLangChange }) {
               className={`lang-option ${
                 selectedLang === lang.value ? "selected" : ""
               }`}
-              onClick={() => handleSelect(lang.value)}
-              >
+              onClick={() => {
+                return selectedLang !== lang.value ? handleSelect(lang.value) : null;
+              }}
+            >
               <span className="language-label">{lang.label}</span>
               {lang.flag}
             </div>
